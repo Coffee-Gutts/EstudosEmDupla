@@ -17,7 +17,6 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="style.css">
-        
     </head>
 
     <body>
@@ -35,13 +34,23 @@
                     <input type="email" id="email" name="email" required>
                     <label for="phone">Número de Telefone:</label>
                     <input type="tel" id="phone" name="phone" required> 
-                    <button type="submit">Enviar</button>
+                    <button id="Botao" type="submit">Enviar</button>
                 </div>
             </form>
 
         </main>
         <footer>
-    
+            
         </footer>
+        <script>
+            function mudarCor() {
+            var botao = document.getElementById('Botao');
+    
+            var corAleatoria = '#' + Math.floor(Math.random()*16777215).toString(16);
+
+            botao.style.backgroundColor = corAleatoria;
+        }
+        document.getElementById('Botao').addEventListener('click', mudarCor);
+        </script>
     </body>
 </html>
