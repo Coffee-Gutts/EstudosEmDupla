@@ -1,6 +1,6 @@
 <?php
 
-    $nome = $_POST['name'];
+    $nome = $_POST['nome'];
     $idade = $_POST['age'];
     $email = $_POST['email'];
     $numero = $_POST['phone'];
@@ -13,20 +13,21 @@
     $connectar = new mysqli($server, $usuario, $senha,$nome_bancodedados);
 
     // verificar conexao
-    if($connectar ->connection_error){
+    if($connectar->connect_error){
         die("Não foi possível conectar ao banco de dados: ".$connectar->connect_error);
     }
 
-    $smtp = $connectar->prepare("INSERT INTO login (nome, idade, email, numero) VALUES(?,?,?,?)");
-    $smpt->bind_param("ssss", $nome, $idade, $email, $numero);
+    $smtp = $connectar->prepare("INSERT INTO entrar (nome, idade, email, numero) VALUES (?,?,?,?)");
+
+    $smtp->bind_param("ssss",$nome, $idade, $email, $numero);
 
     if($smtp->execute()){
         echo "Dados enviados com sucesso";
     }
-    else{
+        else{
         echo "Erro, os dados não foram enviados".$smpt->error;
     }
 
-    $smpt->close();
+    $smtp->close();
     $connectar->close();
 ?>
